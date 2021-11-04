@@ -108,6 +108,8 @@ function install(runtime, abi, platform, arch, cb) {
 
 const options = optionsFromPackage();
 
+console.log("Options from package.json:", options)
+
 if (process.env.npm_config_targets) {
   options.targets = options.targets.concat(
     process.env.npm_config_targets.split(',')
@@ -166,6 +168,7 @@ if (options.targets.length > 0) {
     });
   });
 } else {
+  console.log("Options from package.json not found!")
   const runtime = process.versions['electron'] ? 'electron' : 'node';
   const abi = process.versions.modules;
   const platform = process.platform;
